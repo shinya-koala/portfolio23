@@ -3,8 +3,14 @@ import Modal from 'react-modal';
 
 
 type EmotionData = {
-	type: string;
+	type: string | undefined;
 	level: number | undefined;
+}
+
+const EmorionLevelDef = {
+	Very: 2,
+	Normal: 1,
+	Little: 0,
 }
 
 const EmotionsDef = {
@@ -15,30 +21,32 @@ const EmotionsDef = {
 	Angry: 'Angry',
 }
 
+// モーダルウィンドウ
+const defaultModalStyles = {
+	content: {
+		top: '50%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		marginRight: '-50%',
+		transform: 'translate(-50%, -50%)',
+		maxWidth: '400px',
+		maxHeight: '80vh',
+		overflow: 'auto',
+		borderRadius: '8px',
+		boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+		padding: '20px',
+	},
+	overlay: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
+};
+
 export default function Home() {
-
-	// モーダルウィンドウ
-	const defaultModalStyles = {
-		content: {
-			top: '50%',
-			left: '50%',
-			right: 'auto',
-			bottom: 'auto',
-			marginRight: '-50%',
-			transform: 'translate(-50%, -50%)',
-			maxWidth: '400px',
-			maxHeight: '80vh',
-			overflow: 'auto',
-			borderRadius: '8px',
-			boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-			padding: '20px',
-		},
-		overlay: {
-			backgroundColor: 'rgba(0, 0, 0, 0.5)',
-		},
-	};
-
 	const [showModal, setShowModal] = useState(false);
+	const [emotion, setEmotion] = useState<EmotionData | undefined>(undefined);
+
+	console.log('### emotion', emotion);
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -48,49 +56,64 @@ export default function Home() {
     setShowModal(false);
   };
 
-	// Happy
-	function onClickHappy() {
+	const setEmotionLevel = (level: number) => {
+		const updateEmotion = (prevEmotion: EmotionData | undefined) => {
+			const emotion: EmotionData = {
+				type: prevEmotion?.type,
+				level,
+			};
+			return emotion;
+		};
+		setEmotion(updateEmotion);
+	}
+
+	const setEmotionTypeAndOpenModal = (type: string) => {
 		const emotion: EmotionData = {
-			type: EmotionsDef.Happy,
+			type,
 			level: undefined,
 		};
-		console.log("### emotion", emotion);
+		setEmotion(emotion);
+		setShowModal(true);
+	}
+
+	// Happy
+	function onClickHappy() {
+		setEmotionTypeAndOpenModal(EmotionsDef.Happy);
 	}
 
 	// Fun
 	function onClickFun() {
-		const emotion: EmotionData = {
-			type: EmotionsDef.Fun,
-			level: undefined,
-		};
-		console.log("### emotion", emotion);
+		setEmotionTypeAndOpenModal(EmotionsDef.Fun);
 	}
 
 	// Normal
 	function onClickNormal() {
-		const emotion: EmotionData = {
-			type: EmotionsDef.Normal,
-			level: undefined,
-		};
-		console.log("### emotion", emotion);
+		setEmotionTypeAndOpenModal(EmotionsDef.Normal);
 	}
 
 	// Sad
 	function onClickSad() {
-		const emotion: EmotionData = {
-			type: EmotionsDef.Sad,
-			level: undefined,
-		};
-		console.log("### emotion", emotion);
+		setEmotionTypeAndOpenModal(EmotionsDef.Sad);
 	}
 
 	// Angry
 	function onClickAngry() {
-		const emotion: EmotionData = {
-			type: EmotionsDef.Angry,
-			level: undefined,
-		};
-		console.log("### emotion", emotion);
+		setEmotionTypeAndOpenModal(EmotionsDef.Angry);
+	}
+
+	// Level Very
+	function onClickLevelVery() {
+		setEmotionLevel(EmorionLevelDef.Very);
+	}
+
+	// Level Normal
+	function onClickLevelNormal() {
+		setEmotionLevel(EmorionLevelDef.Normal);
+	}
+
+	// Level Little
+	function onClickLevelLittle() {
+		setEmotionLevel(EmorionLevelDef.Little);
 	}
 
 	return (
@@ -99,23 +122,36 @@ export default function Home() {
 			<p>今のあなたの気持ちに合う感情を<br />下のアイコンから選択してください。</p>
 
 			<div>
-				<button onClick={onClickHappy}>Happy</button>
-				<button onClick={onClickFun}>Fun</button>
-				<button onClick={onClickNormal}>Normal</button>
-				<button onClick={onClickSad}>Sad</button>
-				<button onClick={onClickAngry}>Angry</button>
+				<button onClick={onClickHappy}>{EmotionsDef.Happy}</button>
+				<button onClick={onClickFun}>{EmotionsDef.Fun}</button>
+				<button onClick={onClickNormal}>{EmotionsDef.Normal}</button>
+				<button onClick={onClickSad}>{EmotionsDef.Sad}</button>
+				<button onClick={onClickAngry}>{EmotionsDef.Angry}</button>
 			</div>
 
-			<button onClick={handleOpenModal}>Open Modal</button>
       <Modal
         isOpen={showModal}
         onRequestClose={handleCloseModal}
         style={defaultModalStyles}
         contentLabel="Example Modal"
       >
-        <h2>This is a modal!</h2>
-        <p>Modal content goes here.</p>
-        <button onClick={handleCloseModal}>Close</button>
+        <p>2023/08/02 12:00</p>
+				<p>今の気持ちはどれですか？</p>
+
+				{ emotion?.type == EmotionsDef.Normal ?
+					(
+						<button onClick={onClickLevelNormal}>{emotion?.type}</button>
+					) : (
+						<>
+							<button onClick={onClickLevelVery}>Very {emotion?.type}</button>
+							<button onClick={onClickLevelNormal}>{emotion?.type}</button>
+							<button onClick={onClickLevelLittle}>Little {emotion?.type}</button>
+						</>
+					)
+				}
+				<button>登録</button>
+				<button onClick={handleCloseModal}>キャンセル</button>
+
       </Modal>
 		</>
 	)

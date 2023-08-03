@@ -44,13 +44,14 @@ const defaultModalStyles = {
 
 export default function Home() {
 	const [showModal, setShowModal] = useState(false);
-	const [emotion, setEmotion] = useState<EmotionData | undefined>(undefined);
+	const [emotion, setEmotion] = useState<EmotionData>({
+    type: undefined,
+    level: undefined,
+  });
 
-	console.log('### emotion', emotion);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
+  // const handleOpenModal = () => {
+  //   setShowModal(true);
+  // };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -101,17 +102,17 @@ export default function Home() {
 		setEmotionTypeAndOpenModal(EmotionsDef.Angry);
 	}
 
-	// Level Very
+	// Level: Very
 	function onClickLevelVery() {
 		setEmotionLevel(EmorionLevelDef.Very);
 	}
 
-	// Level Normal
+	// Level: Normal
 	function onClickLevelNormal() {
 		setEmotionLevel(EmorionLevelDef.Normal);
 	}
 
-	// Level Little
+	// Level: Little
 	function onClickLevelLittle() {
 		setEmotionLevel(EmorionLevelDef.Little);
 	}

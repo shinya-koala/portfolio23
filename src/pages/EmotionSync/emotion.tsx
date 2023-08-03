@@ -1,16 +1,10 @@
 import { useState } from "react";
-import Modal from 'react-modal';
+import LevelSelectModal from '@/pages/EmotionSync/levelSelectModal'
 
 
 type EmotionData = {
 	type: string | undefined;
 	level: number | undefined;
-}
-
-const EmorionLevelDef = {
-	Very: 2,
-	Normal: 1,
-	Little: 0,
 }
 
 const EmotionsDef = {
@@ -21,37 +15,12 @@ const EmotionsDef = {
 	Angry: 'Angry',
 }
 
-// モーダルウィンドウ
-const defaultModalStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-		maxWidth: '400px',
-		maxHeight: '80vh',
-		overflow: 'auto',
-		borderRadius: '8px',
-		boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-		padding: '20px',
-	},
-	overlay: {
-		backgroundColor: 'rgba(0, 0, 0, 0.5)',
-	},
-};
-
 export default function Home() {
 	const [showModal, setShowModal] = useState(false);
 	const [emotion, setEmotion] = useState<EmotionData>({
     type: undefined,
     level: undefined,
   });
-
-  // const handleOpenModal = () => {
-  //   setShowModal(true);
-  // };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -63,6 +32,7 @@ export default function Home() {
 				type: prevEmotion?.type,
 				level,
 			};
+			console.log(emotion);
 			return emotion;
 		};
 		setEmotion(updateEmotion);
@@ -102,19 +72,8 @@ export default function Home() {
 		setEmotionTypeAndOpenModal(EmotionsDef.Angry);
 	}
 
-	// Level: Very
-	function onClickLevelVery() {
-		setEmotionLevel(EmorionLevelDef.Very);
-	}
-
-	// Level: Normal
-	function onClickLevelNormal() {
-		setEmotionLevel(EmorionLevelDef.Normal);
-	}
-
-	// Level: Little
-	function onClickLevelLittle() {
-		setEmotionLevel(EmorionLevelDef.Little);
+	function onClickLevel(level: number) {
+		setEmotionLevel(level);
 	}
 
 	return (
@@ -130,30 +89,12 @@ export default function Home() {
 				<button onClick={onClickAngry}>{EmotionsDef.Angry}</button>
 			</div>
 
-      <Modal
-        isOpen={showModal}
-        onRequestClose={handleCloseModal}
-        style={defaultModalStyles}
-        contentLabel="Example Modal"
-      >
-        <p>2023/08/02 12:00</p>
-				<p>今の気持ちはどれですか？</p>
-
-				{ emotion?.type == EmotionsDef.Normal ?
-					(
-						<button onClick={onClickLevelNormal}>{emotion?.type}</button>
-					) : (
-						<>
-							<button onClick={onClickLevelVery}>Very {emotion?.type}</button>
-							<button onClick={onClickLevelNormal}>{emotion?.type}</button>
-							<button onClick={onClickLevelLittle}>Little {emotion?.type}</button>
-						</>
-					)
-				}
-				<button>登録</button>
-				<button onClick={handleCloseModal}>キャンセル</button>
-
-      </Modal>
+			<LevelSelectModal
+				emotion={emotion}
+				showModal={showModal}
+				handleCloseModal={handleCloseModal}
+				onClickLevel={onClickLevel}
+			/>
 		</>
 	)
 

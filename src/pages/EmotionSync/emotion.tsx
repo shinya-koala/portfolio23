@@ -1,25 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { EmotionDataContext } from '@/context/emotionDataContext';
 import LevelSelectModal from '@/pages/EmotionSync/levelSelectModal'
-
-
-type EmotionData = {
-	type: string | undefined;
-	level: number | undefined;
-}
-
-const EmotionsDef = {
-	Happy: 'Happy',
-	Fun: 'Fun',
-	Normal: 'Normal',
-	Sad: 'Sad',
-	Angry: 'Angry',
-}
+import type { IEmotion, EmotionDataContextValue } from '@/types';
+import { EmotionsDef } from '@/constants'
 
 export default function Home() {
+	const { addUserEmotion } = useContext(EmotionDataContext) as EmotionDataContextValue;
 	const [showModal, setShowModal] = useState(false);
-	const [emotion, setEmotion] = useState<EmotionData>({
+	const [emotion, setEmotion] = useState<IEmotion>({
     type: undefined,
     level: undefined,
+		timestamp: undefined,
   });
 
   const handleCloseModal = () => {
@@ -27,10 +18,11 @@ export default function Home() {
   };
 
 	const setEmotionLevel = (level: number) => {
-		const updateEmotion = (prevEmotion: EmotionData | undefined) => {
-			const emotion: EmotionData = {
+		const updateEmotion = (prevEmotion: IEmotion | undefined) => {
+			const emotion: IEmotion = {
 				type: prevEmotion?.type,
 				level,
+				timestamp: Date.now(),
 			};
 			console.log(emotion);
 			return emotion;
@@ -39,9 +31,10 @@ export default function Home() {
 	}
 
 	const setEmotionTypeAndOpenModal = (type: string) => {
-		const emotion: EmotionData = {
+		const emotion: IEmotion = {
 			type,
 			level: undefined,
+			timestamp: undefined,
 		};
 		setEmotion(emotion);
 		setShowModal(true);
@@ -72,8 +65,14 @@ export default function Home() {
 		setEmotionTypeAndOpenModal(EmotionsDef.Angry);
 	}
 
+	// レベル選択
 	function onClickLevel(level: number) {
 		setEmotionLevel(level);
+	}
+
+	// データ登録
+	function onClickRegister() {
+		addUserEmotion('demoUser', emotion);
 	}
 
 	return (
@@ -94,6 +93,7 @@ export default function Home() {
 				showModal={showModal}
 				handleCloseModal={handleCloseModal}
 				onClickLevel={onClickLevel}
+				onClickRegister={onClickRegister}
 			/>
 		</>
 	)

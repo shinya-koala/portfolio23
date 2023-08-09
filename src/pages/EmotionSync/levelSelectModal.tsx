@@ -1,18 +1,5 @@
 import Modal from 'react-modal';
-
-const EmotionsDef = {
-	Happy: 'Happy',
-	Fun: 'Fun',
-	Normal: 'Normal',
-	Sad: 'Sad',
-	Angry: 'Angry',
-}
-
-const EmotionLevelDef = {
-	Very: 2,
-	Normal: 1,
-	Little: 0,
-}
+import { EmotionsDef,EmotionLevelDef } from '@/constants'
 
 // モーダルウィンドウ
 const defaultModalStyles = {
@@ -41,6 +28,7 @@ export default function LevelSelectModal(props: any) {
 		showModal,
 		handleCloseModal,
 		onClickLevel,
+		onClickRegister,
 	} = props;
 
 	// Level: Very
@@ -78,7 +66,7 @@ export default function LevelSelectModal(props: any) {
 					</>
 				)
 			}
-			<button>登録</button>
+			<button onClick={onClickRegister}>登録</button>
 			<button onClick={handleCloseModal}>キャンセル</button>
 		</Modal>
 	)

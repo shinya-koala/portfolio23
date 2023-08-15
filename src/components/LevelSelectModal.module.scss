@@ -1,0 +1,104 @@
+/* カラー */
+
+$color300: #4fc3f7;
+$color400: #2aa0d5;
+$color500: #057cc1;
+$color800: #01579b;
+$color900: #014578;
+
+$baseColor: #fff;
+$outlineShadow: 0 3px 3px
+  rgba(
+    $color: #333,
+    $alpha: 0.3,
+  );
+
+$inlineShadow: 0 0 3px
+  rgba(
+    $color: #333,
+    $alpha: 0.3,
+  )
+  inset;
+
+.modal-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100% !important;
+  height: auto !important;
+  max-width: 960px !important;
+  margin: 0 auto !important;
+  padding: 100px !important;
+  background-color: $color500 !important;
+  .modal-text-area {
+    font-size: 1.6rem;
+    text-align: center;
+    .modal-timestamp {
+      margin-bottom: 12px;
+    }
+    .modal-pop-txt {
+      position: relative;
+      display: inline-block;
+      padding: 6px 54px;
+      background-color: $color800;
+      border-radius: 20px;
+      box-shadow: $outlineShadow;
+      &::before {
+        $iconSize: 20px;
+        content: "";
+        position: absolute;
+        bottom: -#{$iconSize * 2};
+        left: 50%;
+        transform: translateX(-50%);
+        border-top: $iconSize solid $color800;
+        border-right: $iconSize solid transparent;
+        border-bottom: $iconSize solid transparent;
+        border-left: $iconSize solid transparent;
+      }
+    }
+  }
+  .modal-button-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 42px;
+    margin-bottom: 72px;
+  }
+  .submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .register-button {
+      cursor: pointer;
+      width: 120px;
+      height: 42px;
+      margin-right: 144px;
+      border-radius: 5px;
+      box-shadow: $outlineShadow;
+      border-color: transparent;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: $color500;
+      &:active {
+        background-color: #9faeb9;
+        box-shadow: $inlineShadow;
+      }
+    }
+    .cansel-button {
+      cursor: pointer;
+      width: 120px;
+      height: 42px;
+      border-radius: 5px;
+      box-shadow: $outlineShadow;
+      border-color: transparent;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #e94074;
+      &:active {
+        background-color: #9faeb9;
+        box-shadow: $inlineShadow;
+      }
+    }
+  }
+}

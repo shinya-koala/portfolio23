@@ -1,21 +1,62 @@
-export const EmotionsDef = {
-	Happy: 'Happy',
-	Fun: 'Fun',
-	Normal: 'Normal',
-	Sad: 'Sad',
-	Angry: 'Angry',
-}
+export const EmotionTypeDef = {
+  Happy: "Happy",
+  Fun: "Fun",
+  Normal: "Normal",
+  Sad: "Sad",
+  Angry: "Angry",
+};
 
 export const EmotionLevelDef = {
-	Very: 2,
-	Normal: 1,
-	Little: 0,
-}
+  Very: "Very",
+  Normal: "Normal",
+  Little: "Little",
+};
 
 /*
-const data = [
+{
+  userA:[
+			{
+				type: undefined,
+				level: undefined,
+				timestamp: undefined,
+			},
+
+	],
+	userB:[
+			{
+				type: undefined,
+				level: undefined,
+				timestamp: undefined,
+			},
+	]
+}
+
+{
+  userA:{
+		emotionData: [
+			{
+				type: undefined,
+				level: undefined,
+				timestamp: undefined,
+			}
+		],
+	},
+}
+
+
+[
 	{
 		userName: 'userA',
+		emotionData: [
+			{
+				type: undefined,
+				level: undefined,
+				timestamp: undefined,
+			},
+		]
+	},
+	{
+		userName: 'userB',
 		emotionData: [
 			{
 				type: undefined,

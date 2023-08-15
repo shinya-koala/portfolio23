@@ -1,0 +1,49 @@
+/* カラー */
+
+$color300: #4fc3f7;
+$color400: #2aa0d5;
+$color500: #057cc1;
+$color800: #01579b;
+$color900: #014578;
+
+$baseColor: #fff;
+$outlineShadow: 0 3px 3px
+  rgba(
+    $color: #333,
+    $alpha: 0.3,
+  );
+
+$inlineShadow: 0 0 3px
+  rgba(
+    $color: #333,
+    $alpha: 0.3,
+  )
+  inset;
+
+.button-styles {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-color: transparent;
+  border-radius: 20px;
+  &:not(:last-of-type) {
+    margin-right: 52px;
+  }
+}
+.button-normal {
+  background-color: $color300;
+  box-shadow: $outlineShadow;
+}
+.button-pushed {
+  background-color: $color800;
+  box-shadow: $inlineShadow;
+}
+.button-txt {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #fff;
+}

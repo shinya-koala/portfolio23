@@ -1,7 +1,10 @@
 import Modal from "react-modal";
 import styles from "./LevelSelectModal.module.scss";
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
 import { EmotionButton } from "@/components/EmotionButton";
 import { EmotionTypeDef, EmotionLevelDef } from "@/constants";
+import { useEffect, useState } from "react";
 
 // モーダルウィンドウ
 const defaultModalStyles = {
@@ -25,13 +28,10 @@ const defaultModalStyles = {
 };
 
 export default function LevelSelectModal(props: any) {
-  const {
-    emotion,
-    showModal,
-    handleCloseModal,
-    onClickLevel,
-    onClickRegister,
-  } = props;
+  const [open, setOpen] = useState(false);
+  const [registerDisable, setRegisterDisable] = useState(false);
+  const { emotion, showModal, closeModal, onClickLevel, onClickRegister } =
+    props;
 
   // Level: Very
   function onClickLevelVery() {
@@ -48,10 +48,29 @@ export default function LevelSelectModal(props: any) {
     onClickLevel(EmotionLevelDef.Little);
   }
 
+  function _onClickRegister() {
+    setRegisterDisable(true);
+    const closeModalTimeout = () => {
+      setTimeout(() => {
+        closeModal();
+        setRegisterDisable(false);
+      }, 500);
+    };
+    if (onClickRegister()) {
+      setOpen(true);
+      setTimeout(() => {
+        setOpen(false);
+        closeModalTimeout();
+      }, 2000);
+    } else {
+      setRegisterDisable(false);
+    }
+  }
+
   return (
     <Modal
       isOpen={showModal}
-      onRequestClose={handleCloseModal}
+      onRequestClose={closeModal}
       style={defaultModalStyles}
       contentLabel="Example Modal"
       className={styles["modal-window"]}
@@ -87,11 +106,22 @@ export default function LevelSelectModal(props: any) {
           </>
         )}
       </div>
+      <Collapse in={open}>
+        <Alert className={styles["pop-alert"]}>正常に登録されました。</Alert>
+      </Collapse>
       <div className={styles["submit-button"]}>
-        <button className={styles["register-button"]} onClick={onClickRegister}>
+        <button
+          className={styles["register-button"]}
+          onClick={_onClickRegister}
+          disabled={registerDisable}
+        >
           登録
         </button>
-        <button className={styles["cansel-button"]} onClick={handleCloseModal}>
+        <button
+          className={styles["cansel-button"]}
+          onClick={closeModal}
+          disabled={registerDisable}
+        >
           キャンセル
         </button>
       </div>

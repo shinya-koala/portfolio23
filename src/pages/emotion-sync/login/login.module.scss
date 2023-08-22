@@ -1,0 +1,135 @@
+/* Color */
+
+$color300: #4fc3f7;
+$color400: #2aa0d5;
+$color500: #057cc1;
+$color800: #01579b;
+$color900: #014578;
+$colorError: #f44336;
+
+$baseColor: #fff;
+$outlineShadow: 0 3px 3px
+  rgba(
+    $color: #333,
+    $alpha: 0.3,
+  );
+
+$inlineShadow: 0 0 3px
+  rgba(
+    $color: #333,
+    $alpha: 0.3,
+  )
+  inset;
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: $color500;
+  .inner {
+    width: 100%;
+    height: 100%;
+    .card {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      .card-form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 50%;
+        height: 100%;
+        padding: 30px 6vw;
+        background-color: #fff;
+        .card-form-inner {
+          position: relative;
+          width: 100%;
+          padding-bottom: 30px;
+          .logo-title {
+            text-align: center;
+            margin-bottom: 36px;
+            .logo-text {
+              color: $color500;
+              font-size: 3.2rem;
+              font-weight: 600;
+            }
+          }
+          > .flex-d {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+        .input {
+          $iconSize: 40px;
+          padding: 10px 10px 10px 0;
+          border: none;
+          // border-bottom: 1px solid $color500;
+          margin-bottom: 30px;
+          font-size: 1.8rem;
+
+          &:focus-visible {
+            outline: none;
+          }
+        }
+        .err-msg {
+          position: absolute;
+          bottom: 24px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
+          color: $colorError;
+          font-size: 1.4rem;
+        }
+        .login-btn {
+          width: 150px;
+          height: 40px;
+          margin: 0 auto;
+          background-color: #fff;
+          border: solid 1px $color500;
+          border-radius: 3px;
+          color: $color500;
+          transition: 0.3s;
+          &:hover {
+            background-color: $color500;
+            color: #fff;
+          }
+        }
+      }
+      .card-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        height: 100%;
+        padding: 30px 6vw;
+        .title {
+          margin-bottom: 18px;
+          font-size: 3rem;
+        }
+        .text {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrap {
+    .inner {
+      .card {
+        flex-direction: column-reverse;
+        .card-form {
+          width: 100%;
+        }
+        .card-text {
+          width: 100%;
+          height: 30%;
+        }
+      }
+    }
+  }
+}

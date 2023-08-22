@@ -26,13 +26,14 @@ $inlineShadow: 0 0 3px
     width: 100%;
     max-width: 960px;
     margin: 86px auto 0;
+    padding: 0 4vw;
     .sec-ttl {
       margin-bottom: 150px;
       text-align: left;
       .sec-heading {
         margin-bottom: 30px;
         font-size: 4.8rem;
-        font-weight: 600;
+        font-weight: 500;
       }
       .sec-txt {
         font-size: 1.8rem;
@@ -48,26 +49,76 @@ $inlineShadow: 0 0 3px
         background-color: $color800;
         border-radius: 20px;
         box-shadow: $outlineShadow;
-        &::before {
-          $iconSize: 20px;
-          content: "";
-          position: absolute;
-          bottom: -#{$iconSize * 2};
-          left: 50%;
-          transform: translateX(-50%);
-          border-top: $iconSize solid $color800;
-          border-right: $iconSize solid transparent;
-          border-bottom: $iconSize solid transparent;
-          border-left: $iconSize solid transparent;
-        }
+        // &::before {
+        //   $iconSize: 20px;
+        //   content: "";
+        //   position: absolute;
+        //   bottom: -#{$iconSize * 2};
+        //   left: 50%;
+        //   transform: translateX(-50%);
+        //   border-top: $iconSize solid $color800;
+        //   border-right: $iconSize solid transparent;
+        //   border-bottom: $iconSize solid transparent;
+        //   border-left: $iconSize solid transparent;
+        // }
         .pop-text {
           font-size: 1.6rem;
         }
       }
       .button-area {
         display: flex;
+        justify-content: center;
         margin-top: 36px;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .emotion {
+    height: 100vh;
+    .inner {
+      margin-top: 32px;
+      padding: 0 12px;
+      .sec-ttl {
+        margin-bottom: 72px;
+      }
+    }
+    .emotion-button-area {
+      .button-area {
+        justify-content: flex-start !important;
+        padding: 6px (136 - 30px);
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          black 18px,
+          black calc(100% - 18px),
+          transparent
+        );
+        overflow-x: scroll;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+/*------------------------------*/
+// 未ログイン
+/*------------------------------*/
+
+.wrap {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: $color500;
+  .link-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    > .border {
+      border-bottom: solid 1px $baseColor;
     }
   }
 }

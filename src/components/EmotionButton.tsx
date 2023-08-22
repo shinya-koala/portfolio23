@@ -33,10 +33,11 @@ export function EmotionButton(props: Props) {
     >
       <Image
         src={iconPath}
-        alt={`${level}_${emotionType}`}
+        alt={`icon for ${level || ""}${emotionType}`}
         width={96}
         height={96}
         layout="fixed"
+        className={styles["icon-image"]}
       />
       <p className={styles["button-txt"]}>{buttonText}</p>
     </button>

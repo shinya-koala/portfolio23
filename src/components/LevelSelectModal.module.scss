@@ -44,26 +44,31 @@ $inlineShadow: 0 0 3px
       background-color: $color800;
       border-radius: 20px;
       box-shadow: $outlineShadow;
-      &::before {
-        $iconSize: 20px;
-        content: "";
-        position: absolute;
-        bottom: -#{$iconSize * 2};
-        left: 50%;
-        transform: translateX(-50%);
-        border-top: $iconSize solid $color800;
-        border-right: $iconSize solid transparent;
-        border-bottom: $iconSize solid transparent;
-        border-left: $iconSize solid transparent;
-      }
+      // &::before {
+      //   $iconSize: 20px;
+      //   content: "";
+      //   position: absolute;
+      //   bottom: -#{$iconSize * 2};
+      //   left: 50%;
+      //   transform: translateX(-50%);
+      //   border-top: $iconSize solid $color800;
+      //   border-right: $iconSize solid transparent;
+      //   border-bottom: $iconSize solid transparent;
+      //   border-left: $iconSize solid transparent;
+      // }
     }
   }
   .modal-button-area {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 42px;
+    margin-top: 30px;
     margin-bottom: 72px;
+  }
+  .pop-alert {
+    width: 400px;
+    margin: 0 auto 18px;
+    font-size: 1.8rem;
   }
   .submit-button {
     display: flex;
@@ -98,6 +103,36 @@ $inlineShadow: 0 0 3px
       &:active {
         background-color: #9faeb9;
         box-shadow: $inlineShadow;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal-window {
+    padding: 60px 15px !important;
+    width: 90% !important;
+    max-width: 620px !important;
+    .modal-text-area {
+      .modal-pop-txt {
+        padding: 6px 42px;
+      }
+    }
+    .modal-button-area {
+      justify-content: flex-start !important;
+      padding: 6px (84px);
+      overflow-x: scroll;
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 18px,
+        black calc(100% - 18px),
+        transparent
+      );
+    }
+    .submit-button {
+      .register-button {
+        margin-right: 36px;
       }
     }
   }

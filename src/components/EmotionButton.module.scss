@@ -33,6 +33,10 @@ $inlineShadow: 0 0 3px
   &:not(:last-of-type) {
     margin-right: 52px;
   }
+  .icon-image {
+    width: 96px;
+    height: 96px;
+  }
 }
 .button-normal {
   background-color: $color300;
@@ -46,4 +50,20 @@ $inlineShadow: 0 0 3px
   margin-top: 12px;
   font-size: 16px;
   color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .button-styles {
+    padding: 0 30px;
+    &:not(:last-of-type) {
+      margin-right: 36px;
+    }
+    .icon-image {
+      width: 72px;
+      height: 72px;
+    }
+  }
+  .button-txt {
+    white-space: nowrap;
+  }
 }

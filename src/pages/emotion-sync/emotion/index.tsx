@@ -1,29 +1,31 @@
 import { useState, useContext } from "react";
-import { EmotionDataContext } from "@/context/emotionDataContext";
+import { EmotionDataContext } from "@/contexts/emotionDataContext";
 import LevelSelectModal from "@/components/LevelSelectModal";
 import type { IEmotion, EmotionDataContextValue } from "@/types";
 import { EmotionTypeDef, EmotionLevelDef } from "@/constants";
-import styles from "./Emotion.module.scss";
+import styles from "./emotion.module.scss";
 import { EmotionButton } from "@/components/EmotionButton";
 import { MainLayout } from "@/layout/MainLayout";
-
+import { useAuth } from "@/contexts/AuthContext";
+import Link from "next/link";
 export default function Home() {
   const { addUserEmotion } = useContext(
     EmotionDataContext
   ) as EmotionDataContextValue;
   const [showModal, setShowModal] = useState(false);
+  const { loggedUsername } = useAuth();
   const [emotion, setEmotion] = useState<IEmotion>({
-    type: undefined,
-    level: undefined,
-    timestamp: undefined,
+    type: "",
+    level: "",
+    timestamp: 0,
   });
 
-  const handleCloseModal = () => {
+  const closeModal = () => {
     setShowModal(false);
   };
 
   const setEmotionLevel = (level: string) => {
-    const updateEmotion = (prevEmotion: IEmotion | undefined) => {
+    const updateEmotion = (prevEmotion: IEmotion) => {
       const emotion: IEmotion = {
         type: prevEmotion?.type,
         level,
@@ -38,8 +40,8 @@ export default function Home() {
   const setEmotionTypeAndOpenModal = (type: string) => {
     const emotion: IEmotion = {
       type,
-      level: undefined,
-      timestamp: undefined,
+      level: "",
+      timestamp: 0,
     };
     setEmotion(emotion);
     setShowModal(true);
@@ -77,7 +79,26 @@ export default function Home() {
 
   // データ登録
   function onClickRegister() {
-    addUserEmotion("demoUser", emotion);
+    const { type, level, timestamp } = emotion;
+    if (type === "" || level === "" || timestamp === 0) {
+      return false;
+    }
+    addUserEmotion(loggedUsername, emotion);
+    return true;
+  }
+
+  // 未ログイン時の表示
+  if (loggedUsername === "") {
+    return (
+      <div className={styles["wrap"]}>
+        <div className={styles["inner"]}>
+          <Link className={styles["link-text"]} href="../../emotion-sync/login">
+            <span className={styles["border"]}>ログイン</span>
+            してください。
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -124,7 +145,7 @@ export default function Home() {
           <LevelSelectModal
             emotion={emotion}
             showModal={showModal}
-            handleCloseModal={handleCloseModal}
+            closeModal={closeModal}
             onClickLevel={onClickLevel}
             onClickRegister={onClickRegister}
           />

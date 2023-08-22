@@ -1,7 +1,7 @@
 export type IEmotion = {
-  type: string | undefined;
-  level: string | undefined;
-  timestamp: number | undefined;
+  type: string;
+  level: string;
+  timestamp: number;
 };
 
 export type IUserEmotions = {

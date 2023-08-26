@@ -20,7 +20,7 @@ export default function Home() {
     timestamp: 0,
   });
 
-  const closeModal = () => {
+  const onCloseModal = () => {
     setShowModal(false);
   };
 
@@ -145,7 +145,7 @@ export default function Home() {
           <LevelSelectModal
             emotion={emotion}
             showModal={showModal}
-            closeModal={closeModal}
+            onCloseModal={onCloseModal}
             onClickLevel={onClickLevel}
             onClickRegister={onClickRegister}
           />

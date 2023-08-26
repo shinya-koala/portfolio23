@@ -30,22 +30,31 @@ const defaultModalStyles = {
 export default function LevelSelectModal(props: any) {
   const [open, setOpen] = useState(false);
   const [registerDisable, setRegisterDisable] = useState(false);
-  const { emotion, showModal, closeModal, onClickLevel, onClickRegister } =
+  const [pushedLevel, setPushedLevel] = useState<string>();
+  const { emotion, showModal, onCloseModal, onClickLevel, onClickRegister } =
     props;
 
   // Level: Very
   function onClickLevelVery() {
+    setPushedLevel(EmotionLevelDef.Very);
     onClickLevel(EmotionLevelDef.Very);
   }
 
   // Level: Normal
   function onClickLevelNormal() {
+    setPushedLevel(EmotionLevelDef.Normal);
     onClickLevel(EmotionLevelDef.Normal);
   }
 
   // Level: Little
   function onClickLevelLittle() {
+    setPushedLevel(EmotionLevelDef.Little);
     onClickLevel(EmotionLevelDef.Little);
+  }
+
+  function closeModal() {
+    setPushedLevel("");
+    onCloseModal();
   }
 
   function _onClickRegister() {
@@ -54,14 +63,14 @@ export default function LevelSelectModal(props: any) {
       setTimeout(() => {
         closeModal();
         setRegisterDisable(false);
-      }, 500);
+      }, 250);
     };
     if (onClickRegister()) {
       setOpen(true);
       setTimeout(() => {
         setOpen(false);
         closeModalTimeout();
-      }, 2000);
+      }, 1000);
     } else {
       setRegisterDisable(false);
     }
@@ -85,6 +94,7 @@ export default function LevelSelectModal(props: any) {
           <EmotionButton
             emotionType={emotion.type}
             onClick={onClickLevelNormal}
+            pushedLevel={pushedLevel}
           />
         ) : (
           <>
@@ -92,16 +102,19 @@ export default function LevelSelectModal(props: any) {
               emotionType={emotion.type}
               level={EmotionLevelDef.Very}
               onClick={onClickLevelVery}
+              pushedLevel={pushedLevel}
             />
             <EmotionButton
               emotionType={emotion.type}
               level={EmotionLevelDef.Normal}
               onClick={onClickLevelNormal}
+              pushedLevel={pushedLevel}
             />
             <EmotionButton
               emotionType={emotion.type}
               level={EmotionLevelDef.Little}
               onClick={onClickLevelLittle}
+              pushedLevel={pushedLevel}
             />
           </>
         )}

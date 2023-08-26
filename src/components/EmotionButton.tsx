@@ -7,26 +7,25 @@ type Props = {
   emotionType: string;
   level?: string;
   onClick(): void;
+  pushedLevel?: string;
 };
 
 export function EmotionButton(props: Props) {
-  const [isButtonPressed, setIsButtonPressed] = useState(false);
-
-  const { emotionType, level, onClick } = props;
+  const { emotionType, level, onClick, pushedLevel } = props;
 
   const handleButtonClick = () => {
     onClick();
-    // setIsButtonPressed(!isButtonPressed);
   };
 
   const _level = level ? level : "Normal";
   const iconPath = `/emotion/${emotionType}/${_level}.svg`;
   const buttonText = `${level || ""} ${emotionType}`;
+  const isPushed = pushedLevel === _level && _level;
 
   return (
     <button
       className={`
-        ${isButtonPressed ? styles["button-pushed"] : styles["button-normal"]}
+        ${isPushed ? styles["button-pushed"] : styles["button-normal"]}
         ${styles["button-styles"]}
         `}
       onClick={handleButtonClick}

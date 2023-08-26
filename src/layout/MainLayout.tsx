@@ -1,12 +1,13 @@
 import { ReactNode, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./MainLayout.module.scss";
 import { Drawer, Menu, MenuItem } from "@mui/material";
-import Image from "next/image";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Props = {
   children: ReactNode;
@@ -15,6 +16,7 @@ type Props = {
 export function MainLayout(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { loggedUsername, logout } = useAuth();
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -54,7 +56,7 @@ export function MainLayout(props: Props) {
                 <div className={styles["icon-inner"]}>
                   <PersonOutlineOutlinedIcon className={styles["personicon"]} />
                 </div>
-                <p className={styles["nametext"]}>GUEST</p>
+                <p className={styles["nametext"]}>{loggedUsername}</p>
               </div>
               <ul className={styles["drewer-list"]}>
                 <li className={styles["drewer-items"]}>
@@ -116,8 +118,11 @@ export function MainLayout(props: Props) {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose} className={styles["other-menu-text"]}>
-            ログアウト
+          <MenuItem onClick={handleClose}>
+            <p onClick={logout} className={styles["other-menu-text"]}>
+              {" "}
+              ログアウト{" "}
+            </p>
           </MenuItem>
         </Menu>
 

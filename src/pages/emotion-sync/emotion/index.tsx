@@ -118,27 +118,30 @@ export default function Home() {
             <div className={styles["pop-container"]}>
               <p className={styles["pop-text"]}>今の気持ちは？</p>
             </div>
-            <div className={styles["button-area"]}>
-              <EmotionButton
-                emotionType={EmotionTypeDef.Happy}
-                onClick={onClickHappy}
-              />
-              <EmotionButton
-                emotionType={EmotionTypeDef.Fun}
-                onClick={onClickFun}
-              />
-              <EmotionButton
-                emotionType={EmotionTypeDef.Normal}
-                onClick={onClickNormal}
-              />
-              <EmotionButton
-                emotionType={EmotionTypeDef.Sad}
-                onClick={onClickSad}
-              />
-              <EmotionButton
-                emotionType={EmotionTypeDef.Angry}
-                onClick={onClickAngry}
-              />
+
+            <div className={styles["-posTransparent"]}>
+              <div className={styles["button-area"]}>
+                <EmotionButton
+                  emotionType={EmotionTypeDef.Happy}
+                  onClick={onClickHappy}
+                />
+                <EmotionButton
+                  emotionType={EmotionTypeDef.Fun}
+                  onClick={onClickFun}
+                />
+                <EmotionButton
+                  emotionType={EmotionTypeDef.Normal}
+                  onClick={onClickNormal}
+                />
+                <EmotionButton
+                  emotionType={EmotionTypeDef.Sad}
+                  onClick={onClickSad}
+                />
+                <EmotionButton
+                  emotionType={EmotionTypeDef.Angry}
+                  onClick={onClickAngry}
+                />
+              </div>
             </div>
           </div>
 

@@ -49,26 +49,59 @@ $inlineShadow: 0 0 3px
         background-color: $color800;
         border-radius: 20px;
         box-shadow: $outlineShadow;
-        // &::before {
-        //   $iconSize: 20px;
-        //   content: "";
-        //   position: absolute;
-        //   bottom: -#{$iconSize * 2};
-        //   left: 50%;
-        //   transform: translateX(-50%);
-        //   border-top: $iconSize solid $color800;
-        //   border-right: $iconSize solid transparent;
-        //   border-bottom: $iconSize solid transparent;
-        //   border-left: $iconSize solid transparent;
-        // }
         .pop-text {
           font-size: 1.6rem;
         }
       }
-      .button-area {
-        display: flex;
-        justify-content: center;
+      .-posTransparent {
+        width: 100%;
         margin-top: 36px;
+        .button-area {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .emotion {
+    .emotion-button-area {
+      .-posTransparent {
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50px;
+          height: 100%;
+          background-image: linear-gradient(
+            to left,
+            transparent 0 60%,
+            $color500 100%
+          );
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 50px;
+          height: 100%;
+          background-image: linear-gradient(
+            to right,
+            transparent 0 60%,
+            $color500 100%
+          );
+        }
+        .button-area {
+          overflow-x: scroll;
+          justify-content: flex-start !important;
+          padding: 6px (136 - 30px);
+          white-space: nowrap;
+        }
       }
     }
   }
@@ -82,21 +115,6 @@ $inlineShadow: 0 0 3px
       padding: 0 12px;
       .sec-ttl {
         margin-bottom: 72px;
-      }
-    }
-    .emotion-button-area {
-      .button-area {
-        justify-content: flex-start !important;
-        padding: 6px (136 - 30px);
-        mask-image: linear-gradient(
-          to right,
-          transparent,
-          black 18px,
-          black calc(100% - 18px),
-          transparent
-        );
-        overflow-x: scroll;
-        white-space: nowrap;
       }
     }
   }
@@ -115,6 +133,8 @@ $inlineShadow: 0 0 3px
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 100%;
+    text-align: center;
     transform: translate(-50%, -50%);
     font-size: 2rem;
     > .border {

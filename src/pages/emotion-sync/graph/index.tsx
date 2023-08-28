@@ -140,17 +140,11 @@ const EmotionSync = () => {
   } else {
     return (
       <MainLayout>
-        <div style={{ padding: "30px 0", overflowX: "scroll" }}>
-          <ResponsiveContainer
-            width="100%"
-            minWidth="500px"
-            minHeight="600px"
-            height="calc(100vh - 120px)"
-            aspect={16.0 / 9.0}
-          >
+        <div className={styles["graph-img"]}>
+          <p className={styles["name"]}>{loggedUsername}</p>
+          {/* グラフ描写 */}
+          <ResponsiveContainer minHeight="50vh" aspect={16 / 9}>
             <LineChart
-              // width={9999}
-              // height={9999}
               data={shapedDataArray}
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
@@ -178,8 +172,6 @@ const EmotionSync = () => {
                 className="TimeLineChart-brush"
                 dataKey="timestamp"
                 stroke="#00FF00"
-                //startIndex={0}
-                //endIndex={shapedDataArray.length - 1}
               />
               <Line dataKey="typeLevel" fill="#8884d8" stroke="#00FF00" />
             </LineChart>

@@ -22,7 +22,7 @@ $inlineShadow: 0 0 3px
 
 .graph {
   position: relative;
-  height: calc(100vh - 75px);
+  height: 100vh;
   > .-postionCenter {
     position: absolute;
     top: 50%;
@@ -34,6 +34,26 @@ $inlineShadow: 0 0 3px
       > .-borderBottom {
         border-bottom: 1px solid $baseColor;
       }
+    }
+  }
+}
+
+.graph-img {
+  height: 100vh;
+  .name {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .graph {
+    height: 100vh;
+  }
+  .graph-img {
+    .recharts-responsive-container {
+      width: 250% !important;
     }
   }
 }

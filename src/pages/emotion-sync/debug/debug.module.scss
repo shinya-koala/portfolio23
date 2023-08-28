@@ -1,0 +1,76 @@
+/* カラー */
+
+$color300: #4fc3f7;
+$color400: #2aa0d5;
+$color500: #057cc1;
+$color800: #01579b;
+$color900: #014578;
+$colorError: #f44336;
+
+$baseColor: #fff;
+$outlineShadow: 0 3px 3px
+  rgba(
+    $color: #333,
+    $alpha: 0.3,
+  );
+
+$inlineShadow: 0 0 3px
+  rgba(
+    $color: #333,
+    $alpha: 0.3,
+  )
+  inset;
+
+.debug {
+  height: calc(100vh - 75px - 86px);
+  .inner {
+    width: 100%;
+    max-width: 960px;
+    margin: 86px auto 0;
+    padding: 0 4vw;
+    .sec-ttl {
+      margin-bottom: 150px;
+      text-align: left;
+      .sec-heading {
+        font-size: 4.8rem;
+        font-weight: 500;
+      }
+    }
+    .button-area {
+      display: flex;
+      flex-direction: column;
+      button {
+        width: 126px;
+        padding: 8px 0;
+        color: $baseColor;
+        background-color: $color300;
+        border-radius: 6px;
+        box-shadow: $outlineShadow;
+        border: none;
+        &:not(:last-of-type) {
+          margin-bottom: 30px;
+        }
+        &:active {
+          background-color: $color800;
+          box-shadow: $inlineShadow;
+        }
+      }
+      .del-button {
+        background-color: $colorError;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .debug {
+    height: 100vh;
+    .inner {
+      margin-top: 32px;
+      padding: 0 12px;
+      .sec-ttl {
+        margin-bottom: 72px;
+      }
+    }
+  }
+}

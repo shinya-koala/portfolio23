@@ -172,6 +172,10 @@ $inlineShadow: 0 0 3px
           border-radius: 5px;
           font-size: 2rem;
           transition: 0.3s;
+          svg {
+            width: 24px;
+            height: 20.04px;
+          }
           &:hover {
             box-shadow: $inlineShadow;
             background-color: $color800;

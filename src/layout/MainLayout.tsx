@@ -7,6 +7,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { useAuth } from "@/contexts/AuthContext";
 
 type Props = {
@@ -102,6 +103,17 @@ export function MainLayout(props: Props) {
                       className={styles["iconimage"]}
                     />
                     Graph
+                  </Link>
+                </li>
+                <li className={styles["drewer-items"]}>
+                  <Link
+                    href="/emotion-sync/debug"
+                    className={styles["drewer-link"]}
+                  >
+                    <SettingsIcon
+                      className={styles["iconimage"]}
+                    ></SettingsIcon>
+                    Debug
                   </Link>
                 </li>
               </ul>

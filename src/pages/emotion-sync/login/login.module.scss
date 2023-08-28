@@ -42,18 +42,18 @@ $inlineShadow: 0 0 3px
         flex-direction: column;
         width: 50%;
         height: 100%;
-        padding: 30px 6vw;
+        padding: 30px 104px;
         background-color: #fff;
         .card-form-inner {
           position: relative;
           width: 100%;
-          padding-bottom: 30px;
+          padding-bottom: 64px;
           .logo-title {
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 88px;
             .logo-text {
               color: $color500;
-              font-size: 3.2rem;
+              font-size: 4rem;
               font-weight: 600;
             }
           }
@@ -66,10 +66,10 @@ $inlineShadow: 0 0 3px
           $iconSize: 40px;
           padding: 10px 10px 10px 0;
           border: none;
-          // border-bottom: 1px solid $color500;
-          margin-bottom: 30px;
-          font-size: 1.8rem;
-
+          font-size: 1.6rem;
+          &:not(:last-of-type) {
+            margin-bottom: 32px;
+          }
           &:focus-visible {
             outline: none;
           }
@@ -104,13 +104,13 @@ $inlineShadow: 0 0 3px
         justify-content: center;
         width: 50%;
         height: 100%;
-        padding: 30px 6vw;
+        padding: 30px 104px;
         .title {
-          margin-bottom: 18px;
-          font-size: 3rem;
+          margin-bottom: 24px;
+          font-size: 3.2rem;
         }
         .text {
-          font-size: 1.8rem;
+          font-size: 1.6rem;
         }
       }
     }
@@ -124,10 +124,17 @@ $inlineShadow: 0 0 3px
         flex-direction: column-reverse;
         .card-form {
           width: 100%;
+          padding: 40px 24px;
+          .card-form-inner {
+            padding-bottom: 64px;
+            .logo-title {
+              margin-bottom: 64px;
+            }
+          }
         }
         .card-text {
           width: 100%;
-          height: 30%;
+          padding: 24px;
         }
       }
     }

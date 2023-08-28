@@ -21,13 +21,13 @@ $inlineShadow: 0 0 3px
   inset;
 
 /* Layout */
-$containerPadding: 114px;
+$containerPadding: 142px;
 
 @mixin sectionInner() {
   width: 100%;
   max-width: 1024px;
   height: 100%;
-  padding: 234px 24px;
+  padding: 172px 24px;
   margin: 0 auto;
 }
 
@@ -47,14 +47,14 @@ $containerPadding: 114px;
   z-index: 999;
   top: 0;
   width: 100%;
-  height: 130px;
+  height: 128px;
   background-color: rgba($color: #fff, $alpha: 0.8);
   box-shadow: $inlineShadow;
   .inner {
     display: flex;
     width: 100%;
     height: 100%;
-    max-width: 1024px;
+    max-width: 1280px;
     padding: 24px 24px;
     margin: 0 auto;
     > .-flex {
@@ -72,9 +72,9 @@ $containerPadding: 114px;
           .nav-items {
             position: relative;
             color: #333;
-            font-size: 2.6rem;
+            font-size: 3.2rem;
             &:not(:last-of-type) {
-              margin-right: 36px;
+              margin-right: 24px;
             }
             &::before {
               content: "";
@@ -96,9 +96,10 @@ $containerPadding: 114px;
           display: flex;
           align-items: center;
           justify-content: center;
+          margin-left: 32px;
           .icon-items {
-            padding: 10px;
             &:nth-of-type(1) {
+              margin-right: 32px;
               .icon-img {
                 background-image: url("/top/notion_icon.svg");
               }
@@ -110,8 +111,8 @@ $containerPadding: 114px;
             }
             .icon-img {
               display: inline-block;
-              width: 45px;
-              height: 45px;
+              width: 60px;
+              height: 60px;
               background-size: cover;
               background-repeat: no-repeat;
               transition: 0.3s;
@@ -125,7 +126,8 @@ $containerPadding: 114px;
     }
     .title {
       color: #333;
-      font-size: 3.4rem;
+      font-size: 3.2rem;
+      font-weight: 600;
     }
   }
 }
@@ -183,10 +185,10 @@ $containerPadding: 114px;
     .menu-list {
       padding: 20vh 40px 100px 40px;
       .menu-items {
-        font-size: 3rem;
+        font-size: 2.4rem;
         color: #fff;
         &:not(:last-of-type) {
-          margin-bottom: 24px;
+          margin-bottom: 16px;
         }
         .close-button {
           position: absolute;
@@ -201,7 +203,7 @@ $containerPadding: 114px;
         }
         .menu-text {
           display: block;
-          padding: 24px 12px;
+          padding: 16px;
           border-radius: 10px;
           &:active {
             background-color: $color800;
@@ -224,7 +226,7 @@ $containerPadding: 114px;
     @include sectionInner();
     .title {
       text-align: center;
-      font-size: 8rem;
+      font-size: 6.4rem;
       font-weight: 500;
     }
     .text-image-container {
@@ -233,23 +235,23 @@ $containerPadding: 114px;
       padding-top: $containerPadding;
       .text-content {
         width: 100%;
-        max-width: 360px;
+        max-width: 480px;
         .text-name {
-          margin-bottom: 60px;
-          font-size: 3.5rem;
+          margin-bottom: 48px;
+          font-size: 3.2rem;
           .name {
-            padding-bottom: 6px;
+            padding-bottom: 8px;
             border-bottom: solid 1px #fff;
           }
         }
         .style-text {
-          line-height: 4rem;
-          font-size: 2rem;
+          line-height: 3.6rem;
+          font-size: 2.4rem;
         }
       }
       .image-content {
-        width: 375px;
-        height: 375px;
+        width: 360px;
+        height: 360px;
         background-image: url("/top/about_img01.jpg");
       }
     }
@@ -309,7 +311,7 @@ $containerPadding: 114px;
     @include sectionInner();
     .title {
       text-align: center;
-      font-size: 8rem;
+      font-size: 6.4rem;
       font-weight: 500;
     }
     .container {
@@ -327,9 +329,9 @@ $containerPadding: 114px;
               font-size: 3.2rem;
             }
             .product-image {
-              width: 450px;
-              height: 300px;
-              margin: 0 auto 24px;
+              width: 560px;
+              height: 315px;
+              margin: 0 auto 48px;
               background-image: url("/top/product_img01.jpg");
               background-size: cover;
               box-shadow: $outlineShadow;
@@ -341,12 +343,13 @@ $containerPadding: 114px;
               .link-button {
                 cursor: pointer;
                 display: inline-block;
-                padding: 6px 12px;
+                padding: 16px 72px;
                 background-color: $color500;
-                color: $baseColor;
                 border: none;
                 box-shadow: $outlineShadow;
-                border-radius: 5px;
+                border-radius: 40px;
+                color: $baseColor;
+                font-size: 2.4rem;
                 transition: 0.3s;
               }
             }
@@ -402,11 +405,11 @@ $containerPadding: 114px;
     position: relative;
     height: 100%;
     text-align: center;
-    font-size: 8rem;
+    font-size: 6.4rem;
     font-weight: 500;
     .title-img {
       width: auto;
-      min-height: 380px;
+      min-height: 384px;
       background-image: url("/top/skill_header.jpg");
       background-position: center;
       background-attachment: fixed;
@@ -438,7 +441,7 @@ $containerPadding: 114px;
         min-height: 300px;
         .top-text {
           height: 100%;
-          line-height: 3rem;
+          line-height: 2.7rem;
           padding: 30px;
           color: #333;
           font-size: 1.8rem;
@@ -483,7 +486,7 @@ $containerPadding: 114px;
             font-weight: 500;
           }
           .years {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
           }
         }
         &:nth-of-type(1) {
@@ -603,7 +606,7 @@ $containerPadding: 114px;
     padding-right: 0;
     .title {
       text-align: center;
-      font-size: 8rem;
+      font-size: 6.4rem;
       font-weight: 500;
     }
     .container {
@@ -614,7 +617,7 @@ $containerPadding: 114px;
         .items {
           width: calc(100% / 3);
           min-height: 400px;
-          line-height: 3rem;
+          line-height: 2.7rem;
           padding: 60px 45px 30px 45px;
           color: #333;
           font-size: 1.8rem;
@@ -701,7 +704,7 @@ $containerPadding: 114px;
             }
           }
           &:not(:last-of-type) {
-            margin-right: 20px;
+            margin-right: 32px;
           }
         }
       }
@@ -710,6 +713,9 @@ $containerPadding: 114px;
         align-items: center;
         justify-content: center;
         .icon-items {
+          &:not(:last-of-type) {
+            margin-right: 32px;
+          }
           &:nth-of-type(1) {
             .icon-img {
               background-image: url("/top/notion_icon.svg");
@@ -720,11 +726,10 @@ $containerPadding: 114px;
               background-image: url("/top/github_icon.svg");
             }
           }
-          padding: 10px;
           .icon-img {
             display: inline-block;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             background-size: cover;
             background-repeat: no-repeat;
             transition: 0.3s;
@@ -738,7 +743,7 @@ $containerPadding: 114px;
     .copyright {
       text-align: center;
       color: #333;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
     }
   }
 }
@@ -746,10 +751,19 @@ $containerPadding: 114px;
 @media screen and (max-width: 768px) {
   .footer {
     .inner {
+      padding: 32px 16px;
       .nav {
         flex-direction: column;
         .nav-list {
-          margin-bottom: 18px;
+          margin-bottom: 32px;
+          .nav-items {
+            &:not(:last-of-type) {
+              margin-right: 18px;
+            }
+          }
+        }
+        .icon-list {
+          margin-bottom: 24px;
         }
       }
     }

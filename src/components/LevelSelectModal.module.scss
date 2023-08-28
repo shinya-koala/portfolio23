@@ -5,6 +5,7 @@ $color400: #2aa0d5;
 $color500: #057cc1;
 $color800: #01579b;
 $color900: #014578;
+$errColor: #e94074;
 
 $baseColor: #fff;
 $outlineShadow: 0 3px 3px
@@ -35,36 +36,29 @@ $inlineShadow: 0 0 3px
     font-size: 1.6rem;
     text-align: center;
     .modal-timestamp {
-      margin-bottom: 12px;
+      margin-bottom: 24px;
     }
     .modal-pop-txt {
       position: relative;
       display: inline-block;
-      padding: 6px 54px;
+      padding: 8px 24px;
       background-color: $color800;
       border-radius: 20px;
       box-shadow: $outlineShadow;
-      // &::before {
-      //   $iconSize: 20px;
-      //   content: "";
-      //   position: absolute;
-      //   bottom: -#{$iconSize * 2};
-      //   left: 50%;
-      //   transform: translateX(-50%);
-      //   border-top: $iconSize solid $color800;
-      //   border-right: $iconSize solid transparent;
-      //   border-bottom: $iconSize solid transparent;
-      //   border-left: $iconSize solid transparent;
-      // }
     }
   }
-  .modal-button-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 72px;
+  > .-posTransparent {
+    width: 100%;
+    .modal-button-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 30px;
+      margin-bottom: 56px;
+    }
   }
+
   .pop-alert {
     width: 400px;
     margin: 0 auto 18px;
@@ -77,7 +71,7 @@ $inlineShadow: 0 0 3px
     .register-button {
       cursor: pointer;
       width: 120px;
-      height: 42px;
+      padding: 8px 32px;
       margin-right: 144px;
       border-radius: 5px;
       box-shadow: $outlineShadow;
@@ -86,7 +80,8 @@ $inlineShadow: 0 0 3px
       font-weight: 600;
       color: $color500;
       &:active {
-        background-color: #9faeb9;
+        color: #fff;
+        background-color: $color800;
         box-shadow: $inlineShadow;
       }
     }
@@ -99,9 +94,13 @@ $inlineShadow: 0 0 3px
       border-color: transparent;
       font-size: 1.6rem;
       font-weight: 600;
-      color: #e94074;
+      background-color: $errColor;
+      color: #fff;
+      transition: 0.3s;
+      &:hover {
+        box-shadow: $inlineShadow;
+      }
       &:active {
-        background-color: #9faeb9;
         box-shadow: $inlineShadow;
       }
     }
@@ -110,25 +109,49 @@ $inlineShadow: 0 0 3px
 
 @media screen and (max-width: 768px) {
   .modal-window {
-    padding: 60px 15px !important;
+    padding: 64px 0 !important;
     width: 90% !important;
-    max-width: 620px !important;
+    max-width: 640px !important;
     .modal-text-area {
       .modal-pop-txt {
         padding: 6px 42px;
       }
     }
-    .modal-button-area {
-      justify-content: flex-start !important;
-      padding: 6px (84px);
-      overflow-x: scroll;
-      mask-image: linear-gradient(
-        to right,
-        transparent,
-        black 18px,
-        black calc(100% - 18px),
-        transparent
-      );
+    > .-posTransparent {
+      position: relative;
+      padding: 0 1px;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 48px;
+        height: 100%;
+        background-image: linear-gradient(
+          to left,
+          transparent 0 40%,
+          $color500 100%
+        );
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 48px;
+        height: 100%;
+        background-image: linear-gradient(
+          to right,
+          transparent 0 40%,
+          $color500 100%
+        );
+      }
+      .modal-button-area {
+        justify-content: flex-start !important;
+        padding: 8px 96px;
+        padding-left: 80px;
+        overflow-x: scroll;
+      }
     }
     .submit-button {
       .register-button {

@@ -25,9 +25,10 @@ export default function Login() {
 
   /* style */
   const iconStyle = {
-    width: 30,
-    height: 30,
-    marginRight: 10,
+    width: 40,
+    height: 40,
+    marginRight: 16,
+    marginLeft: 8,
     color: "#BBB",
     fontSize: "1.6rem",
   };

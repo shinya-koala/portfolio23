@@ -26,17 +26,18 @@ $inlineShadow: 0 0 3px
     width: 100%;
     max-width: 960px;
     margin: 86px auto 0;
-    padding: 0 4vw;
+    // padding: 0 4vw;
     .sec-ttl {
       margin-bottom: 150px;
       text-align: left;
       .sec-heading {
-        margin-bottom: 30px;
+        margin-bottom: 16px;
         font-size: 4.8rem;
         font-weight: 500;
       }
       .sec-txt {
-        font-size: 1.8rem;
+        line-height: 3.2rem;
+        font-size: 2.4rem;
       }
     }
 
@@ -45,7 +46,7 @@ $inlineShadow: 0 0 3px
       .pop-container {
         position: relative;
         display: inline-block;
-        padding: 6px 54px;
+        padding: 8px 32px;
         background-color: $color800;
         border-radius: 20px;
         box-shadow: $outlineShadow;
@@ -67,40 +68,50 @@ $inlineShadow: 0 0 3px
 
 @media screen and (max-width: 900px) {
   .emotion {
-    .emotion-button-area {
-      .-posTransparent {
-        position: relative;
-        &::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 50px;
-          height: 100%;
-          background-image: linear-gradient(
-            to left,
-            transparent 0 60%,
-            $color500 100%
-          );
+    .inner {
+      .sec-ttl {
+        .sec-heading {
+          font-size: 4rem;
         }
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 50px;
-          height: 100%;
-          background-image: linear-gradient(
-            to right,
-            transparent 0 60%,
-            $color500 100%
-          );
+        .sec-txt {
+          font-size: 1.8rem;
         }
-        .button-area {
-          overflow-x: scroll;
-          justify-content: flex-start !important;
-          padding: 6px (136 - 30px);
-          white-space: nowrap;
+      }
+      .emotion-button-area {
+        .-posTransparent {
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 54px;
+            height: 100%;
+            background-image: linear-gradient(
+              to left,
+              transparent 0 60%,
+              $color500 100%
+            );
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 54px;
+            height: 100%;
+            background-image: linear-gradient(
+              to right,
+              transparent 0 60%,
+              $color500 100%
+            );
+          }
+          .button-area {
+            overflow-x: scroll;
+            justify-content: flex-start !important;
+            padding: 6px (136 - 30px);
+            white-space: nowrap;
+          }
         }
       }
     }
@@ -109,7 +120,7 @@ $inlineShadow: 0 0 3px
 
 @media screen and (max-width: 768px) {
   .emotion {
-    height: 100vh;
+    height: calc(100vh - 75px - 32px);
     .inner {
       margin-top: 32px;
       padding: 0 12px;
@@ -136,7 +147,7 @@ $inlineShadow: 0 0 3px
     width: 100%;
     text-align: center;
     transform: translate(-50%, -50%);
-    font-size: 2rem;
+    font-size: 2.4rem;
     > .border {
       border-bottom: solid 1px $baseColor;
     }

@@ -86,38 +86,42 @@ export default function LevelSelectModal(props: any) {
     >
       <div className={styles["modal-text-area"]}>
         <p className={styles["modal-timestamp"]}>2023/08/02 12:00</p>
-        <p className={styles["modal-pop-txt"]}>今の気持ちはどれですか？</p>
+        <p className={styles["modal-pop-txt"]}>
+          今の気持ち度合いはどれですか？
+        </p>
       </div>
 
-      <div className={styles["modal-button-area"]}>
-        {emotion?.type == EmotionTypeDef.Normal ? (
-          <EmotionButton
-            emotionType={emotion.type}
-            onClick={onClickLevelNormal}
-            pushedLevel={pushedLevel}
-          />
-        ) : (
-          <>
+      <div className={styles["-posTransparent"]}>
+        <div className={styles["modal-button-area"]}>
+          {emotion?.type == EmotionTypeDef.Normal ? (
             <EmotionButton
               emotionType={emotion.type}
-              level={EmotionLevelDef.Very}
-              onClick={onClickLevelVery}
-              pushedLevel={pushedLevel}
-            />
-            <EmotionButton
-              emotionType={emotion.type}
-              level={EmotionLevelDef.Normal}
               onClick={onClickLevelNormal}
               pushedLevel={pushedLevel}
             />
-            <EmotionButton
-              emotionType={emotion.type}
-              level={EmotionLevelDef.Little}
-              onClick={onClickLevelLittle}
-              pushedLevel={pushedLevel}
-            />
-          </>
-        )}
+          ) : (
+            <>
+              <EmotionButton
+                emotionType={emotion.type}
+                level={EmotionLevelDef.Very}
+                onClick={onClickLevelVery}
+                pushedLevel={pushedLevel}
+              />
+              <EmotionButton
+                emotionType={emotion.type}
+                level={EmotionLevelDef.Normal}
+                onClick={onClickLevelNormal}
+                pushedLevel={pushedLevel}
+              />
+              <EmotionButton
+                emotionType={emotion.type}
+                level={EmotionLevelDef.Little}
+                onClick={onClickLevelLittle}
+                pushedLevel={pushedLevel}
+              />
+            </>
+          )}
+        </div>
       </div>
       <Collapse in={open}>
         <Alert className={styles["pop-alert"]}>正常に登録されました。</Alert>

@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import Image from "next/image";
-import { EmotionTypeDef, EmotionLevelDef } from "@/constants";
 import styles from "./EmotionButton.module.scss";
 
 type Props = {

@@ -108,9 +108,7 @@ export default function Home() {
           <div className={styles["sec-ttl"]}>
             <h1 className={styles["sec-heading"]}>Emotion</h1>
             <p className={styles["sec-txt"]}>
-              今のあなたの気持ちに合う感情を
-              <br />
-              下のアイコンから選択してください。
+              今のあなたの気持ちに合う感情を下の５つのアイコンから１つ選択してください。
             </p>
           </div>
 

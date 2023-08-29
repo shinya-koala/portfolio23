@@ -15,7 +15,7 @@ import {
 import styles from "./graph.module.scss";
 import Link from "next/link";
 import { MainLayout } from "@/layout/MainLayout";
-import type { EmotionDataContextValue, IUserEmotions } from "@/types";
+import type { EmotionDataContextValue } from "@/types";
 import { EmotionDataContext } from "@/contexts/emotionDataContext";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -86,23 +86,15 @@ const formatYAxis = (value: number) => {
 };
 
 const EmotionSync = () => {
-  const { emotionDataList } = useContext(
+  const { loggedUsername } = useAuth();
+  const { emotionList } = useContext(
     EmotionDataContext
   ) as EmotionDataContextValue;
 
-  const { loggedUsername } = useAuth();
-  const newEmotionDataList = [...emotionDataList];
-  const userEmotion = Object.values(newEmotionDataList).find(
-    (item) => item.userName === loggedUsername
-  );
-
-  console.log("### userEmotion", userEmotion);
-
   const shapedDataArray: any[] = [];
 
-  if (loggedUsername !== "" && userEmotion) {
-    const { emotionData } = userEmotion as IUserEmotions;
-    emotionData.forEach((emotion) => {
+  if (loggedUsername !== "") {
+    emotionList.forEach((emotion) => {
       const { type, level, timestamp } = emotion;
       // 成形処理
       const jstTimestamp = timestamp + 1000 * 60 * 60 * 9;

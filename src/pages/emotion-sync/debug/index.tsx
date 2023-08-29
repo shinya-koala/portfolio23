@@ -2,32 +2,8 @@ import { MainLayout } from "@/layout/MainLayout";
 import styles from "./debug.module.scss";
 
 const Debug = () => {
-  const onClickClearFullData = async () => {
-    const response = await fetch("/api/writeJson", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log("### data", data);
-    /*
-    const json = JSON.stringify({
-      A: "B",
-      C: "D",
-      E: "F",
-    });
-    const response = await fetch("/api/writeJson", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: json,
-    });
-    console.log("### response", response);
-    */
-  };
-
+  const clearUserData = async () => {};
+  const clearFullData = async () => {};
   return (
     <MainLayout>
       <section className={styles["debug"]}>
@@ -36,13 +12,10 @@ const Debug = () => {
             <h1 className={styles["sec-heading"]}>Debug</h1>
           </div>
           <div className={styles["button-area"]}>
-            <button
-              className={styles["del-button"]}
-              onClick={onClickClearFullData}
-            >
+            <button className={styles["del-button"]} onClick={clearUserData}>
               ClearUserData
             </button>
-            <button>ClearFullData</button>
+            <button onClick={clearFullData}>ClearFullData</button>
           </div>
         </div>
       </section>

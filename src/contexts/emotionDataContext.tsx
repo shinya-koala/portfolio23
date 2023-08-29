@@ -4,45 +4,85 @@ import {
   createContext,
   useState,
   useMemo,
+  useEffect,
   useCallback,
 } from "react";
-import type { IEmotion, IUserEmotions, EmotionDataContextValue } from "@/types";
+import type { IEmotion, EmotionDataContextValue } from "@/types";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const EmotionDataContext = createContext<
   EmotionDataContextValue | undefined
 >(undefined);
 
 export const EmotionDataProvider = ({ children }: { children: ReactNode }) => {
-  const [emotionDataList, setEmotionDataList] = useState<IUserEmotions[]>([]);
+  const { loggedUsername } = useAuth();
+  const [emotionList, setEmotionList] = useState<IEmotion[]>([]);
 
-  const addUserEmotion = useCallback(
-    (userName: string, emotion: IEmotion) => {
-      const newEmotionDataList = [...emotionDataList];
-      const userEmotion = Object.values(newEmotionDataList).find(
-        (item) => item.userName === userName
-      );
-      if (userEmotion) {
-        // 該当ユーザのデータがある場合はemotionを追加
-        userEmotion.emotionData.push(emotion);
-      } else {
-        // ない場合はユーザとデータ新規追加
-        newEmotionDataList.push({
-          userName,
-          emotionData: [emotion],
-        });
-      }
-      setEmotionDataList(newEmotionDataList);
-      console.log("### newEmotionDataList", newEmotionDataList);
+  // DB取得リクエスト
+  const fetchUserEmotion = useCallback(async (): Promise<IEmotion[]> => {
+    if (!loggedUsername) return [];
+    const query = `userName=${loggedUsername}`;
+    const response = await fetch(`/api/JsonDB?${query}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      return [];
+    }
+    const data: IEmotion[] = await response.json();
+    return data;
+  }, [loggedUsername]);
+
+  // DB書き込みリクエスト
+  const writeUserEmotion = useCallback(
+    async (emotionList: IEmotion[]) => {
+      if (!emotionList.length || !loggedUsername) return;
+      await fetch("/api/JsonDB", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: loggedUsername,
+          data: emotionList,
+        }),
+      });
     },
-    [emotionDataList]
+    [loggedUsername]
   );
+
+  // Emotion追加
+  const addUserEmotion = useCallback(
+    async (emotion: IEmotion) => {
+      const nextEmotionList = [...emotionList];
+      nextEmotionList.push(emotion);
+      setEmotionList(nextEmotionList);
+    },
+    [emotionList]
+  );
+
+  // DB更新
+  useEffect(() => {
+    writeUserEmotion(emotionList);
+  }, [emotionList]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // emotionList配信用キャッシュ更新
+  useEffect(() => {
+    (async () => {
+      if (!loggedUsername) return;
+      const emotionList = await fetchUserEmotion();
+      setEmotionList(emotionList);
+    })();
+  }, [fetchUserEmotion, loggedUsername]);
 
   const value = useMemo(() => {
     return {
-      emotionDataList,
+      emotionList,
       addUserEmotion,
     };
-  }, [emotionDataList, addUserEmotion]);
+  }, [emotionList, addUserEmotion]);
 
   return (
     <EmotionDataContext.Provider value={value}>

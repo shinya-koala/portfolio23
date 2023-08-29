@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { EmotionDataContext } from "@/contexts/emotionDataContext";
 import LevelSelectModal from "@/components/LevelSelectModal";
 import type { IEmotion, EmotionDataContextValue } from "@/types";
-import { EmotionTypeDef, EmotionLevelDef } from "@/constants";
+import { EmotionTypeDef } from "@/constants";
 import styles from "./emotion.module.scss";
 import { EmotionButton } from "@/components/EmotionButton";
 import { MainLayout } from "@/layout/MainLayout";
@@ -83,7 +83,7 @@ export default function Home() {
     if (type === "" || level === "" || timestamp === 0) {
       return false;
     }
-    addUserEmotion(loggedUsername, emotion);
+    addUserEmotion(emotion);
     return true;
   }
 

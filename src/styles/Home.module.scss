@@ -98,16 +98,8 @@ $containerPadding: 142px;
           justify-content: center;
           margin-left: 32px;
           .icon-items {
-            &:nth-of-type(1) {
+            &:not(:last-of-type) {
               margin-right: 32px;
-              .icon-img {
-                background-image: url("/top/notion_icon.svg");
-              }
-            }
-            &:nth-of-type(2) {
-              .icon-img {
-                background-image: url("/top/github_icon.svg");
-              }
             }
             .icon-img {
               display: inline-block;
@@ -252,7 +244,10 @@ $containerPadding: 142px;
       .image-content {
         width: 360px;
         height: 360px;
-        background-image: url("/top/about_img01.jpg");
+        img {
+          width: 100%;
+          height: auto;
+        }
       }
     }
   }
@@ -291,8 +286,10 @@ $containerPadding: 142px;
         .image-content {
           width: 250px;
           height: 250px;
-          background-size: cover;
-          border-radius: 50%;
+          img {
+            background-size: cover;
+            border-radius: 50%;
+          }
         }
       }
     }
@@ -329,21 +326,24 @@ $containerPadding: 142px;
               font-size: 3.2rem;
             }
             .product-image {
-              width: 560px;
-              height: 315px;
+              width: 480px;
+              height: auto;
               margin: 0 auto 48px;
-              background-image: url("/top/product_img01.jpg");
-              background-size: cover;
               box-shadow: $outlineShadow;
               opacity: 0.8;
               transition: 0.3s;
+              img {
+                width: 100%;
+                height: auto;
+                background-size: cover;
+              }
             }
             .button-area {
               text-align: center;
               .link-button {
                 cursor: pointer;
                 display: inline-block;
-                padding: 16px 72px;
+                padding: 8px 56px;
                 background-color: $color500;
                 border: none;
                 box-shadow: $outlineShadow;
@@ -399,23 +399,24 @@ $containerPadding: 142px;
 // Skill
 /* ------------------------------------------- */
 .skill {
+  overflow: hidden;
   width: 100%;
   background-color: #333;
   .title {
     position: relative;
-    height: 100%;
+    height: 384px;
     text-align: center;
     font-size: 6.4rem;
     font-weight: 500;
     .title-img {
       width: auto;
-      min-height: 384px;
-      background-image: url("/top/skill_header.jpg");
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-size: cover;
+      height: 100%;
       background-color: #333;
+      img {
+        width: auto;
+        height: 384px;
+        filter: blur(5px);
+      }
     }
     .title-text {
       position: absolute;
@@ -575,9 +576,12 @@ $containerPadding: 142px;
 @media screen and (max-width: 768px) {
   .skill {
     .title {
+      height: 280px;
       font-size: 5rem;
       .title-img {
-        min-height: 260px;
+        img {
+          height: 280px;
+        }
       }
     }
     .inner {
@@ -672,7 +676,7 @@ $containerPadding: 142px;
   border-top: solid 1px #333;
   .inner {
     @include sectionInner();
-    padding: 52px 0 36px;
+    padding: 52px 32px 32px;
     .nav {
       display: flex;
       align-items: center;
@@ -715,16 +719,6 @@ $containerPadding: 142px;
         .icon-items {
           &:not(:last-of-type) {
             margin-right: 32px;
-          }
-          &:nth-of-type(1) {
-            .icon-img {
-              background-image: url("/top/notion_icon.svg");
-            }
-          }
-          &:nth-of-type(2) {
-            .icon-img {
-              background-image: url("/top/github_icon.svg");
-            }
           }
           .icon-img {
             display: inline-block;

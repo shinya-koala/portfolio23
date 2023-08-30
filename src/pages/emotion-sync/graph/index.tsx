@@ -107,7 +107,6 @@ const EmotionSync = () => {
         timestamp: formattedDate,
       });
     });
-    console.log(shapedDataArray);
   }
 
   if (!shapedDataArray.length) {
@@ -132,42 +131,41 @@ const EmotionSync = () => {
   } else {
     return (
       <MainLayout>
-        <div className={styles["graph-img"]}>
-          <p className={styles["name"]}>{loggedUsername}</p>
-          {/* グラフ描写 */}
-          <ResponsiveContainer minHeight="50vh" aspect={16 / 9}>
-            <LineChart
-              data={shapedDataArray}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="timestamp"
-                tick={{ fontSize: "1.7rem" }}
-                stroke="#FFFFFF"
-              />
-              <YAxis
-                dataKey="typeLevel"
-                tickFormatter={formatYAxis}
-                ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-                tick={{ fontSize: "1.2rem" }}
-                stroke="#FFFFFF"
-                interval={0}
-              />
-              <Tooltip />
-              <Legend
-                verticalAlign="top"
-                wrapperStyle={{ lineHeight: "40px" }}
-              />
-              <ReferenceLine y={0} stroke="#000" />
-              <Brush
-                className="TimeLineChart-brush"
-                dataKey="timestamp"
-                stroke="#00FF00"
-              />
-              <Line dataKey="typeLevel" fill="#8884d8" stroke="#00FF00" />
-            </LineChart>
-          </ResponsiveContainer>
+        <div className={styles["chart-container"]}>
+          <div className={styles["chart-wrapper"]}>
+            {/* グラフ描写 */}
+            <p className={styles["name"]}>{loggedUsername}</p>
+            <ResponsiveContainer width={"100%"} height={"100%"}>
+              <LineChart data={shapedDataArray} margin={{ left: 8 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="timestamp"
+                  tick={{ fontSize: "1.7rem" }}
+                  stroke="#FFFFFF"
+                />
+                <YAxis
+                  dataKey="typeLevel"
+                  tickFormatter={formatYAxis}
+                  ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+                  tick={{ fontSize: "1.2rem" }}
+                  stroke="#FFFFFF"
+                  interval={0}
+                />
+                <Tooltip />
+                <Legend
+                  verticalAlign="top"
+                  wrapperStyle={{ lineHeight: "24px" }}
+                />
+                <ReferenceLine y={0} stroke="#000" />
+                <Brush
+                  className="TimeLineChart-brush"
+                  dataKey="timestamp"
+                  stroke="#00FF00"
+                />
+                <Line dataKey="typeLevel" fill="#8884d8" stroke="#00FF00" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </MainLayout>
     );

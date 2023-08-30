@@ -31,7 +31,6 @@ export default function Home() {
         level,
         timestamp: Date.now(),
       };
-      console.log(emotion);
       return emotion;
     };
     setEmotion(updateEmotion);

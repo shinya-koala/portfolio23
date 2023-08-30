@@ -1,6 +1,7 @@
 import { Drawer } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import Link from "next/link";
+import Image from "next/image";
 import { Link as Scroll } from "react-scroll";
 import styles from "@/styles/Home.module.scss";
 import { useState } from "react";
@@ -164,7 +165,14 @@ export default function Home() {
                     href="https://puddle-splash-c80.notion.site/portfolio-498e7a7d3b7d4b90a5aef056df5afdc3?pvs=4"
                     target="_blank"
                     className={styles["icon-img"]}
-                  ></Link>
+                  >
+                    <Image
+                      src="/top/notion_icon.svg"
+                      alt="notion icon"
+                      width={60}
+                      height={60}
+                    />
+                  </Link>
                 </li>
                 <li className={styles["icon-items"]}>
                   <Link
@@ -172,7 +180,14 @@ export default function Home() {
                     target="_blank"
                     className={styles["icon-img"]}
                     style={{ backgroundImage: `url("/top/github_icon.svg")` }}
-                  ></Link>
+                  >
+                    <Image
+                      src="/top/github_icon.svg"
+                      alt="github icon"
+                      width={60}
+                      height={60}
+                    />
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -201,7 +216,14 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className={styles["image-content"]}></div>
+            <div className={styles["image-content"]}>
+              <Image
+                src="/top/about_img01.jpg"
+                alt="My arm image"
+                width={360}
+                height={360}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -222,7 +244,14 @@ export default function Home() {
                   <div className={styles["product-text"]}>
                     <p>EmotionSync</p>
                   </div>
-                  <div className={styles["product-image"]}></div>
+                  <div className={styles["product-image"]}>
+                    <Image
+                      src="/top/product_img01.jpg"
+                      alt="product image"
+                      width={1920}
+                      height={1080}
+                    />
+                  </div>
                   <div className={styles["button-area"]}>
                     <button className={styles["link-button"]}>
                       サイトを見る
@@ -237,7 +266,14 @@ export default function Home() {
 
       <section id="skill" className={styles["skill"]}>
         <div className={styles["title"]}>
-          <div className={styles["title-img"]}></div>
+          <div className={styles["title-img"]}>
+            <Image
+              src="/top/skill_header.jpg"
+              alt="skill image"
+              width={1920}
+              height={384}
+            />
+          </div>
           <p className={styles["title-text"]}>Skill</p>
         </div>
         <div className={`${styles["inner"]} ${styles["full-inner"]}`}>
@@ -393,14 +429,28 @@ export default function Home() {
                   href="https://puddle-splash-c80.notion.site/portfolio-498e7a7d3b7d4b90a5aef056df5afdc3?pvs=4"
                   target="_blank"
                   className={styles["icon-img"]}
-                ></a>
+                >
+                  <Image
+                    src="/top/notion_icon.svg"
+                    alt="notion icon"
+                    width={40}
+                    height={40}
+                  />
+                </a>
               </li>
               <li className={styles["icon-items"]}>
                 <a
                   href="https://github.com/shinya-koala/portfolio23"
                   target="_blank"
                   className={styles["icon-img"]}
-                ></a>
+                >
+                  <Image
+                    src="/top/github_icon.svg"
+                    alt="github icon"
+                    width={40}
+                    height={40}
+                  />
+                </a>
               </li>
             </ul>
           </nav>

@@ -20,40 +20,47 @@ $inlineShadow: 0 0 3px
   )
   inset;
 
+.chart-container {
+  overflow: hidden;
+  .chart-wrapper {
+    height: calc(100vh - 75px);
+    padding: 0px 56px 64px 56px;
+    .name {
+      padding: 8px 0px 0px 0px;
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 500;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chart-container {
+    .chart-wrapper {
+      padding: 16px 24px 64px 16px;
+    }
+  }
+}
+
+// データがなかった時のコーディング
 .graph {
+  overflow: hidden;
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 75px);
   > .-postionCenter {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 36px;
     .err-log {
+      text-align: center;
       font-size: 2rem;
       color: $baseColor;
       > .-borderBottom {
         border-bottom: 1px solid $baseColor;
       }
-    }
-  }
-}
-
-.graph-img {
-  height: 100vh;
-  .name {
-    text-align: center;
-    font-size: 2.8rem;
-    font-weight: 500;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .graph {
-    height: 100vh;
-  }
-  .graph-img {
-    .recharts-responsive-container {
-      width: 250% !important;
     }
   }
 }

@@ -21,8 +21,14 @@ export const EmotionDataProvider = ({ children }: { children: ReactNode }) => {
   // DB取得リクエスト
   const fetchUserEmotion = useCallback(async (): Promise<IEmotion[]> => {
     if (!loggedUsername) return [];
-    const query = `userName=${loggedUsername}`;
-    const response = await fetch(`/api/JsonDB?${query}`, {
+    // const query = `userName=${loggedUsername}`;
+    // const response = await fetch(`/api/JsonDB?${query}`, {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    const response = await fetch(`/data/${loggedUsername}.json`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,6 +41,7 @@ export const EmotionDataProvider = ({ children }: { children: ReactNode }) => {
     return data;
   }, [loggedUsername]);
 
+  /*
   // DB書き込みリクエスト
   const writeUserEmotion = useCallback(
     async (emotionList: IEmotion[]) => {
@@ -52,6 +59,7 @@ export const EmotionDataProvider = ({ children }: { children: ReactNode }) => {
     },
     [loggedUsername]
   );
+  */
 
   // Emotion追加
   const addUserEmotion = useCallback(
@@ -63,10 +71,12 @@ export const EmotionDataProvider = ({ children }: { children: ReactNode }) => {
     [emotionList]
   );
 
+  /*
   // DB更新
   useEffect(() => {
     writeUserEmotion(emotionList);
   }, [emotionList]); // eslint-disable-line react-hooks/exhaustive-deps
+  */
 
   // emotionList配信用キャッシュ更新
   useEffect(() => {

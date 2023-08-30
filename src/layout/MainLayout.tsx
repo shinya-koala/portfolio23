@@ -9,6 +9,7 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useAuth } from "@/contexts/AuthContext";
+import { url } from "@/util/config";
 
 type Props = {
   children: ReactNode;
@@ -66,7 +67,7 @@ export function MainLayout(props: Props) {
                     className={styles["drewer-link"]}
                   >
                     <Image
-                      src="/share/hearts.svg"
+                      src={url("/share/hearts.svg")}
                       alt="nav icon"
                       width={24}
                       height={20.04}
@@ -81,7 +82,7 @@ export function MainLayout(props: Props) {
                     className={`${styles["drewer-link"]} ${styles["disable"]}`}
                   >
                     <Image
-                      src="/share/inventory.svg"
+                      src={url("/share/inventory.svg")}
                       alt="nav icon"
                       width={24}
                       height={20.04}
@@ -96,7 +97,7 @@ export function MainLayout(props: Props) {
                     className={styles["drewer-link"]}
                   >
                     <Image
-                      src="/share/bar_chart.svg"
+                      src={url("/share/bar_chart.svg")}
                       alt="nav icon"
                       width={24}
                       height={20.04}

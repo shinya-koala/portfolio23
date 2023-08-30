@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./EmotionButton.module.scss";
+import { url } from "@/util/config";
 
 type Props = {
   emotionType: string;
@@ -29,7 +30,7 @@ export function EmotionButton(props: Props) {
       onClick={handleButtonClick}
     >
       <Image
-        src={iconPath}
+        src={url(iconPath)}
         alt={`icon for ${level || ""}${emotionType}`}
         width={96}
         height={96}

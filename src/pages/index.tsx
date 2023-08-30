@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Link as Scroll } from "react-scroll";
 import styles from "@/styles/Home.module.scss";
 import { useState } from "react";
+import { url } from "@/util/config";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -167,7 +168,7 @@ export default function Home() {
                     className={styles["icon-img"]}
                   >
                     <Image
-                      src="/top/notion_icon.svg"
+                      src={url("/top/notion_icon.svg")}
                       alt="notion icon"
                       width={60}
                       height={60}
@@ -182,7 +183,7 @@ export default function Home() {
                     style={{ backgroundImage: `url("/top/github_icon.svg")` }}
                   >
                     <Image
-                      src="/top/github_icon.svg"
+                      src={url("/top/github_icon.svg")}
                       alt="github icon"
                       width={60}
                       height={60}
@@ -218,7 +219,7 @@ export default function Home() {
             </div>
             <div className={styles["image-content"]}>
               <Image
-                src="/top/about_img01.jpg"
+                src={url("/top/about_img01.jpg")}
                 alt="My arm image"
                 width={360}
                 height={360}
@@ -246,7 +247,7 @@ export default function Home() {
                   </div>
                   <div className={styles["product-image"]}>
                     <Image
-                      src="/top/product_img01.jpg"
+                      src={url("/top/product_img01.jpg")}
                       alt="product image"
                       width={1920}
                       height={1080}
@@ -268,7 +269,7 @@ export default function Home() {
         <div className={styles["title"]}>
           <div className={styles["title-img"]}>
             <Image
-              src="/top/skill_header.jpg"
+              src={url("/top/skill_header.jpg")}
               alt="skill image"
               width={1920}
               height={384}
@@ -431,7 +432,7 @@ export default function Home() {
                   className={styles["icon-img"]}
                 >
                   <Image
-                    src="/top/notion_icon.svg"
+                    src={url("/top/notion_icon.svg")}
                     alt="notion icon"
                     width={40}
                     height={40}
@@ -445,7 +446,7 @@ export default function Home() {
                   className={styles["icon-img"]}
                 >
                   <Image
-                    src="/top/github_icon.svg"
+                    src={url("/top/github_icon.svg")}
                     alt="github icon"
                     width={40}
                     height={40}

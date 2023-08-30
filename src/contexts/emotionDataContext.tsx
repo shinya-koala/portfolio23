@@ -18,6 +18,26 @@ export const EmotionDataProvider = ({ children }: { children: ReactNode }) => {
   const { loggedUsername } = useAuth();
   const [emotionList, setEmotionList] = useState<IEmotion[]>([]);
 
+  /*
+  // DB書き込みリクエスト
+  const writeUserEmotion = useCallback(
+    async (emotionList: IEmotion[]) => {
+      if (!emotionList.length || !loggedUsername) return;
+      await fetch("/api/JsonDB", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: loggedUsername,
+          data: emotionList,
+        }),
+      });
+    },
+    [loggedUsername]
+  );
+  */
+
   // DB取得リクエスト
   const fetchUserEmotion = useCallback(async (): Promise<IEmotion[]> => {
     if (!loggedUsername) return [];
@@ -40,26 +60,6 @@ export const EmotionDataProvider = ({ children }: { children: ReactNode }) => {
     const data: IEmotion[] = await response.json();
     return data;
   }, [loggedUsername]);
-
-  /*
-  // DB書き込みリクエスト
-  const writeUserEmotion = useCallback(
-    async (emotionList: IEmotion[]) => {
-      if (!emotionList.length || !loggedUsername) return;
-      await fetch("/api/JsonDB", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userName: loggedUsername,
-          data: emotionList,
-        }),
-      });
-    },
-    [loggedUsername]
-  );
-  */
 
   // Emotion追加
   const addUserEmotion = useCallback(

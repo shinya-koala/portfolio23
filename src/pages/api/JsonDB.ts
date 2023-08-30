@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 
-const dbBase = "../../../data/";
+const dbBase = "data/";
 
 export default function JsonDB(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {

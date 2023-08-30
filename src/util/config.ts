@@ -1,8 +1,6 @@
-import getConfig from "next/config";
+const nextConfig = require("@/../next.config");
 
 export function url(filename: string): string {
-  const { publicRuntimeConfig } = getConfig() as {
-    publicRuntimeConfig: { branchName: string };
-  };
-  return publicRuntimeConfig.branchName || "" + filename;
+  const { basePath = "" } = nextConfig;
+  return basePath + filename;
 }

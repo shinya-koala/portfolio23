@@ -17,7 +17,7 @@ export function EmotionButton(props: Props) {
   };
 
   const _level = level ? level : "Normal";
-  const iconPath = `/emotion/${emotionType}/${_level}.svg`;
+  const iconPath = url(`/emotion/${emotionType}/${_level}.svg`).toLowerCase();
   const buttonText = `${level || ""} ${emotionType}`;
   const isPushed = pushedLevel === _level && _level;
 
@@ -30,7 +30,7 @@ export function EmotionButton(props: Props) {
       onClick={handleButtonClick}
     >
       <Image
-        src={url(iconPath)}
+        src={iconPath}
         alt={`icon for ${level || ""}${emotionType}`}
         width={96}
         height={96}

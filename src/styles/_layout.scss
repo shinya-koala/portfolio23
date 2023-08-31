@@ -1,0 +1,10 @@
+/* Layout */
+$containerPadding: 142px;
+
+@mixin sectionInner() {
+  width: 100%;
+  max-width: 1024px;
+  height: 100%;
+  padding: 172px 24px;
+  margin: 0 auto;
+}

@@ -137,7 +137,7 @@ const EmotionSync = () => {
             {/* グラフ描写 */}
             <p className={styles["name"]}>{loggedUsername}</p>
             <ResponsiveContainer width={"100%"} height={"100%"}>
-              <LineChart data={shapedDataArray} margin={{ left: 8 }}>
+              <LineChart data={shapedDataArray} margin={{ top: 16, left: 8 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="timestamp"
@@ -151,11 +151,6 @@ const EmotionSync = () => {
                   tick={{ fontSize: "1.2rem" }}
                   stroke="#FFFFFF"
                   interval={0}
-                />
-                <Tooltip />
-                <Legend
-                  verticalAlign="top"
-                  wrapperStyle={{ lineHeight: "24px" }}
                 />
                 <ReferenceLine y={0} stroke="#000" />
                 <Brush

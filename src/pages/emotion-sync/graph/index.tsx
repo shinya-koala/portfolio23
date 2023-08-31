@@ -19,70 +19,70 @@ import type { EmotionDataContextValue } from "@/types";
 import { EmotionDataContext } from "@/contexts/emotionDataContext";
 import { useAuth } from "@/contexts/AuthContext";
 
+const items = [
+  {
+    typeLevel: "VeryAngry",
+    label: "Very Angry",
+  },
+  {
+    typeLevel: "NormalAngry",
+    label: "Normal Angry",
+  },
+  {
+    typeLevel: "LittleAngry",
+    label: "Little Angry",
+  },
+  {
+    typeLevel: "VerySad",
+    label: "Very Sad",
+  },
+  {
+    typeLevel: "NormalSad",
+    label: "Normal Sad",
+  },
+  {
+    typeLevel: "LittleSad",
+    label: "Little Sad",
+  },
+  {
+    typeLevel: "NormalNormal", // Normal
+    label: "Normal",
+  },
+  {
+    typeLevel: "LittleFun",
+    label: "Little Fun",
+  },
+  {
+    typeLevel: "NormalFun",
+    label: "Normal Fun",
+  },
+  {
+    typeLevel: "VeryFun",
+    label: "Very Fun",
+  },
+  {
+    typeLevel: "LittleHappy",
+    label: "Little Happy",
+  },
+  {
+    typeLevel: "NormalHappy",
+    label: "Normal Happy",
+  },
+  {
+    typeLevel: "VeryHappy",
+    label: "Very Happy",
+  },
+];
+
 const getTypeLevel = (type: string, level: string) => {
-  switch (level + type) {
-    case "VeryAngry":
-      return 0;
-    case "NormalAngry":
-      return 1;
-    case "LittleAngry":
-      return 2;
-    case "VerySad":
-      return 3;
-    case "NormalSad":
-      return 4;
-    case "LittleSad":
-      return 5;
-    case "NormalNormal": // Normal
-      return 6;
-    case "LittleFun":
-      return 7;
-    case "NormalFun":
-      return 8;
-    case "VeryFun":
-      return 9;
-    case "LittleHappy":
-      return 10;
-    case "NormalHappy":
-      return 11;
-    case "VeryHappy":
-      return 12;
-    default:
-      return "";
-  }
+  const typeLevel = level + type;
+  const index = items.findIndex((item) => item.typeLevel === typeLevel);
+  if (index === -1) return;
+  return index;
 };
 
 const formatYAxis = (value: number) => {
-  switch (value) {
-    case 0:
-      return "Very Angry";
-    case 1:
-      return "Normal Angry";
-    case 2:
-      return "Little Angry";
-    case 3:
-      return "Very Sad";
-    case 4:
-      return "Normal Sad";
-    case 5:
-      return "Little Sad";
-    case 6:
-      return "Normal";
-    case 7:
-      return "Little Fun";
-    case 8:
-      return "Normal Fun";
-    case 9:
-      return "Very Fun";
-    case 10:
-      return "Little Happy";
-    case 11:
-      return "Normal Happy";
-    case 12:
-      return "Very Happy";
-    default:
-      return "";
-  }
+  return items[value]?.label ?? "";
 };
 
 const EmotionSync = () => {
@@ -101,11 +101,12 @@ const EmotionSync = () => {
       const date = new Date(jstTimestamp);
       const formattedDate = format(date, "MM/dd HH:mm");
       let typeLevel = getTypeLevel(type, level);
-
-      shapedDataArray.push({
-        typeLevel,
-        timestamp: formattedDate,
-      });
+      if (typeLevel !== undefined) {
+        shapedDataArray.push({
+          typeLevel,
+          timestamp: formattedDate,
+        });
+      }
     });
   }
 

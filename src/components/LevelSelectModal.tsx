@@ -4,7 +4,8 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import { EmotionButton } from "@/components/EmotionButton";
 import { EmotionTypeDef, EmotionLevelDef } from "@/constants";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { format } from "date-fns";
 
 // モーダルウィンドウ
 const defaultModalStyles = {
@@ -30,7 +31,9 @@ const defaultModalStyles = {
 export default function LevelSelectModal(props: any) {
   const [open, setOpen] = useState(false);
   const [registerDisable, setRegisterDisable] = useState(false);
+  const [nowDateText, setNowDateText] = useState("");
   const [pushedLevel, setPushedLevel] = useState<string>();
+  const timerIdRef = useRef<NodeJS.Timeout>();
   const { emotion, showModal, onCloseModal, onClickLevel, onClickRegister } =
     props;
 
@@ -55,19 +58,22 @@ export default function LevelSelectModal(props: any) {
   function closeModal() {
     setPushedLevel("");
     onCloseModal();
+    setOpen(false);
+    setRegisterDisable(false);
+    clearTimeout(timerIdRef.current);
   }
 
   function _onClickRegister() {
     setRegisterDisable(true);
     const closeModalTimeout = () => {
-      setTimeout(() => {
+      timerIdRef.current = setTimeout(() => {
         closeModal();
         setRegisterDisable(false);
       }, 250);
     };
     if (onClickRegister()) {
       setOpen(true);
-      setTimeout(() => {
+      timerIdRef.current = setTimeout(() => {
         setOpen(false);
         closeModalTimeout();
       }, 1000);
@@ -75,6 +81,14 @@ export default function LevelSelectModal(props: any) {
       setRegisterDisable(false);
     }
   }
+
+  // nowTimer
+  useEffect(() => {
+    setInterval(() => {
+      const formattedDate = format(new Date(), "MM/dd HH:mm");
+      setNowDateText(formattedDate);
+    }, 1000); // 1秒毎に更新
+  }, []);
 
   return (
     <Modal
@@ -85,7 +99,7 @@ export default function LevelSelectModal(props: any) {
       className={styles["modal-window"]}
     >
       <div className={styles["modal-text-area"]}>
-        <p className={styles["modal-timestamp"]}>2023/08/02 12:00</p>
+        <p className={styles["modal-timestamp"]}>{nowDateText}</p>
         <p className={styles["modal-pop-txt"]}>
           今の気持ち度合いはどれですか？
         </p>

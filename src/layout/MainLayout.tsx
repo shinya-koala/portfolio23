@@ -106,7 +106,10 @@ export function MainLayout(props: Props) {
                     Graph
                   </Link>
                 </li>
-                <li className={styles["drewer-items"]}>
+                <li
+                  className={styles["drewer-items"]}
+                  style={{ display: "none" }}
+                >
                   <Link
                     href="/emotion-sync/debug"
                     className={styles["drewer-link"]}

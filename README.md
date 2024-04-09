@@ -13,6 +13,20 @@
 # 作品名
 - [Emotion-Sync](https://portfolio23-pink.vercel.app/emotion-sync/login/)
 
+## 環境構築
+
+### 環境
+VSCode
+
+### 使用言語
+Typescript
+
+### フレームワーク
+Next.js
+
+### ホスト
+Vercel
+
 # 作品の見どころ
 作品のデザインにMaterial Designを採用しました。コーディングルールもドキュメントに沿っているので直感的な操作が可能です。
 そしてなるべく無駄が少ないようなコードを記述しました。
